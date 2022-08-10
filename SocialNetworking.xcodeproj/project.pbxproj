@@ -16,6 +16,9 @@
 		FF7E6C0A28A3E97A002163AD /* SocialNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C0928A3E97A002163AD /* SocialNetworkingTests.swift */; };
 		FF7E6C1428A3E97A002163AD /* SocialNetworkingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C1328A3E97A002163AD /* SocialNetworkingUITests.swift */; };
 		FF7E6C1628A3E97A002163AD /* SocialNetworkingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C1528A3E97A002163AD /* SocialNetworkingUITestsLaunchTests.swift */; };
+		FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2628A3EC21002163AD /* PostModel.swift */; };
+		FF7E6C2928A3ED53002163AD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2828A3ED53002163AD /* API.swift */; };
+		FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2A28A3F575002163AD /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		FF7E6C0F28A3E97A002163AD /* SocialNetworkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocialNetworkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7E6C1328A3E97A002163AD /* SocialNetworkingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkingUITests.swift; sourceTree = "<group>"; };
 		FF7E6C1528A3E97A002163AD /* SocialNetworkingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FF7E6C2628A3EC21002163AD /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		FF7E6C2828A3ED53002163AD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		FF7E6C2A28A3F575002163AD /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */,
-				FF7E6BF528A3E979002163AD /* ContentView.swift */,
+				FF7E6C2528A3EB17002163AD /* ViewModel */,
+				FF7E6C2428A3EB12002163AD /* View */,
+				FF7E6C2328A3EB0A002163AD /* Model */,
+				FF7E6C2228A3EB01002163AD /* Service */,
 				FF7E6BF728A3E97A002163AD /* Assets.xcassets */,
 				FF7E6BFC28A3E97A002163AD /* Persistence.swift */,
 				FF7E6BFE28A3E97A002163AD /* SocialNetworking.xcdatamodeld */,
@@ -131,6 +140,38 @@
 				FF7E6C1528A3E97A002163AD /* SocialNetworkingUITestsLaunchTests.swift */,
 			);
 			path = SocialNetworkingUITests;
+			sourceTree = "<group>";
+		};
+		FF7E6C2228A3EB01002163AD /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FF7E6C2828A3ED53002163AD /* API.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		FF7E6C2328A3EB0A002163AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF7E6C2628A3EC21002163AD /* PostModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF7E6C2428A3EB12002163AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF7E6BF528A3E979002163AD /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF7E6C2528A3EB17002163AD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF7E6C2A28A3F575002163AD /* PostViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF7E6C0028A3E97A002163AD /* SocialNetworking.xcdatamodeld in Sources */,
+				FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */,
+				FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */,
 				FF7E6BFD28A3E97A002163AD /* Persistence.swift in Sources */,
 				FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */,
+				FF7E6C2928A3ED53002163AD /* API.swift in Sources */,
 				FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
