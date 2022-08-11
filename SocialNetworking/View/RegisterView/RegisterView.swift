@@ -33,9 +33,9 @@ struct RegisterView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Email", text: $emailText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Senha", text: $passwordText)
+            SecureField("Senha", text: $passwordText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Confirmação de Senha", text: $passwordConfirmationText)
+            SecureField("Confirmação de Senha", text: $passwordConfirmationText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             
         }
