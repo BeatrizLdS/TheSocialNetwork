@@ -14,11 +14,33 @@ struct ContentView: View {
     PostViewModel = PostViewModel()
 
     var body: some View {
-        NavigationView {
-            
+        ZStack{
+            if viewModel.postsList.isEmpty {
+                emptyStateView
+            } else {
+                postsListView
+            }
         }
         .task{
             await viewModel.fetchPosts()
+        }
+    }
+    var emptyStateView: some View {
+        VStack {
+            Text("Loading").font(.title)
+            ProgressView()
+                .progressViewStyle(.circular)
+                .scaleEffect(1.5)
+                .padding()
+        }
+    }
+    
+    var postsListView: some View{
+        ScrollView(.vertical, showsIndicators: false){
+            ForEach(viewModel.postsList, id: \.id){
+                post in PostCell(post: post)
+                    .padding(20)
+            }
         }
     }
     

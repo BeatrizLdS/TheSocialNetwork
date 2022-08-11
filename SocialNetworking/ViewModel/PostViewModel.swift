@@ -17,6 +17,7 @@ class PostViewModel: ObservableObject{
     
     func fetchPosts() async {
         let allPosts = await fetchPostsWithImages()
+        await publishPosts(posts: allPosts)
     }
     
     private func fetchPostsWithImages() async -> [Post]{
