@@ -25,14 +25,10 @@ class API {
                 //Verificar a resposta
                 switch httpsResponse.statusCode{
                     case 200...300:
-                        print("Os dados dos posts foram recebidos com sucesso")
-                        
+                    
                         //Decode data => Post
-                        print(data)
                         let postsList : [Post] = try JSONDecoder().decode([Post].self, from: data)
-                        print("Deu bom transformar os dados!")
                         return postsList
-                        
                     default:
                         print("Deu ruim quando foi receber os dados do post")
                     
@@ -40,8 +36,6 @@ class API {
                 
             }
         }catch{
-            print("Deu ruim no meio do caminho")
-            
             print(error)
         }
         
