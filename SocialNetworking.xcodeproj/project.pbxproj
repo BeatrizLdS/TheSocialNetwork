@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF143F8728A526E000A452C8 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF143F8628A526E000A452C8 /* PostCell.swift */; };
+		FF143F8C28A54BB300A452C8 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF143F8B28A54BB300A452C8 /* RegisterView.swift */; };
 		FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */; };
 		FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BF528A3E979002163AD /* ContentView.swift */; };
 		FF7E6BF828A3E97A002163AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7E6BF728A3E97A002163AD /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF143F8628A526E000A452C8 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		FF143F8B28A54BB300A452C8 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		FF7E6BF028A3E979002163AD /* SocialNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkingApp.swift; sourceTree = "<group>"; };
 		FF7E6BF528A3E979002163AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +85,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF143F8828A5416B00A452C8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		FF7E6BE728A3E979002163AD = {
 			isa = PBXGroup;
 			children = (
@@ -104,10 +115,11 @@
 		FF7E6BF228A3E979002163AD /* SocialNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				FF143F8828A5416B00A452C8 /* Constants */,
 				FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */,
-				FF7E6C2528A3EB17002163AD /* ViewModel */,
-				FF7E6C2428A3EB12002163AD /* View */,
 				FF7E6C2328A3EB0A002163AD /* Model */,
+				FF7E6C2428A3EB12002163AD /* View */,
+				FF7E6C2528A3EB17002163AD /* ViewModel */,
 				FF7E6C2228A3EB01002163AD /* Service */,
 				FF7E6BF728A3E97A002163AD /* Assets.xcassets */,
 				FF7E6BFC28A3E97A002163AD /* Persistence.swift */,
@@ -162,6 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				FF7E6BF528A3E979002163AD /* ContentView.swift */,
+				FF143F8628A526E000A452C8 /* PostCell.swift */,
+				FF143F8B28A54BB300A452C8 /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF143F8C28A54BB300A452C8 /* RegisterView.swift in Sources */,
 				FF7E6C0028A3E97A002163AD /* SocialNetworking.xcdatamodeld in Sources */,
 				FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */,
 				FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */,
@@ -311,6 +326,7 @@
 				FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */,
 				FF7E6C2928A3ED53002163AD /* API.swift in Sources */,
 				FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */,
+				FF143F8728A526E000A452C8 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
