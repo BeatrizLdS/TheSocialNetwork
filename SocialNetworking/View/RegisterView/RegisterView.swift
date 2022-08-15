@@ -15,20 +15,29 @@ struct RegisterView: View {
     @State private var passwordConfirmationText : String = ""
     
     var body: some View {
-        VStack (alignment: .center, spacing: 20){
+        NavigationView{
+            VStack (alignment: .center, spacing: 20){
             
-            imageProfileView
-            
-            informationTextField
-            
-            createButton
+                imageProfileView
+                informationTextFieldView
+                createButtonView
+//                    .toolbar{
+//                        ToolbarItem(placement: .cancellationAction){
+//                            cancelButtonView
+//                        }
+//                        ToolbarItem(placement: .confirmationAction){
+//                            saveButtonView
+//                        }
+//                    }
+//                Spacer()
+            }
+            .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
+            .padding(20)
         }
-        .padding(20)
     }
     
-    private var informationTextField : some View {
+    private var informationTextFieldView : some View {
         VStack (alignment: .center, spacing: 5) {
-            
             TextField("Nome", text: $nameText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Email", text: $emailText)
@@ -37,7 +46,6 @@ struct RegisterView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             SecureField("Confirmação de Senha", text: $passwordConfirmationText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
         }
     }
     
@@ -49,7 +57,6 @@ struct RegisterView: View {
     }
     
     private var changePhotoButtonView : some View {
-        
         Button{
             print("Procurar imagem de perfil")
         }label: {
@@ -63,10 +70,25 @@ struct RegisterView: View {
         .buttonStyle(.bordered)
         .clipShape(Circle())
         .dynamicTypeSize(.large)
-    
     }
     
-    private var createButton : some View {
+    private var cancelButtonView : some View {
+        Button{
+            print("Não criar usuário")
+        } label: {
+            Text("Cancelar")
+        }
+    }
+    
+    private var saveButtonView : some View {
+        Button{
+            print("Verifica contato e adiciona")
+        } label: {
+            Text("Criar usuário")
+        }
+    }
+    
+    private var createButtonView : some View {
         Button{
             print("Verifica contato e adiciona")
         }label: {
