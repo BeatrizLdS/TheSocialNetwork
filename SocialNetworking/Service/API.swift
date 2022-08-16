@@ -9,6 +9,15 @@ import Foundation
 
 class API {
     
+    
+    static func execute(_ urlRequest: URLRequest) async throws -> Data  {
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        if let httpsResponse = response as? HTTPURLResponse{
+            print("status: ", httpsResponse.statusCode)
+        }
+        return data
+    }
+    
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
@@ -35,13 +44,10 @@ class API {
                         
                     default:
                         print("Deu ruim quando foi receber os dados do post")
-                    
                 }
-                
             }
         }catch{
             print("Deu ruim no meio do caminho")
-            
             print(error)
         }
         

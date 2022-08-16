@@ -21,6 +21,8 @@
 		FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2628A3EC21002163AD /* PostModel.swift */; };
 		FF7E6C2928A3ED53002163AD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2828A3ED53002163AD /* API.swift */; };
 		FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2A28A3F575002163AD /* PostViewModel.swift */; };
+		FFAECC5228ABBC0800A77B6E /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5128ABBC0800A77B6E /* InitialView.swift */; };
+		FFAECC5428ABBEF500A77B6E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5328ABBEF500A77B6E /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		FF7E6C2628A3EC21002163AD /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		FF7E6C2828A3ED53002163AD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		FF7E6C2A28A3F575002163AD /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		FFAECC5128ABBC0800A77B6E /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
+		FFAECC5328ABBEF500A77B6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 				FF7E6BF528A3E979002163AD /* ContentView.swift */,
 				FF143F8628A526E000A452C8 /* PostCell.swift */,
 				FF143F8B28A54BB300A452C8 /* RegisterView.swift */,
+				FFAECC5128ABBC0800A77B6E /* InitialView.swift */,
+				FFAECC5328ABBEF500A77B6E /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -321,10 +327,12 @@
 				FF143F8C28A54BB300A452C8 /* RegisterView.swift in Sources */,
 				FF7E6C0028A3E97A002163AD /* SocialNetworking.xcdatamodeld in Sources */,
 				FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */,
+				FFAECC5228ABBC0800A77B6E /* InitialView.swift in Sources */,
 				FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */,
 				FF7E6BFD28A3E97A002163AD /* Persistence.swift in Sources */,
 				FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */,
 				FF7E6C2928A3ED53002163AD /* API.swift in Sources */,
+				FFAECC5428ABBEF500A77B6E /* LoginView.swift in Sources */,
 				FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */,
 				FF143F8728A526E000A452C8 /* PostCell.swift in Sources */,
 			);
