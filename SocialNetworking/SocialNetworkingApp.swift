@@ -13,7 +13,7 @@ struct SocialNetworkingApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RegisterView()
+            InitialView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
