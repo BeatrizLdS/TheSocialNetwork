@@ -54,4 +54,29 @@ class API {
         return []
     }
     
+    static func addUser(user: User) async -> Bool{
+        let url = URL(string: "http://adaspace.local/users")
+        
+        //Configuração da request
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        
+        do{
+            let serializationData = try JSONSerialization.data(withJSONObject: user, options: .fragmentsAllowed)
+            urlRequest.httpBody = serializationData
+            
+            //Realização de request
+            let(data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            //Verificação da request
+            if let responseHeader = response as? HTTPURLResponse {
+                return (responseHeader.statusCode == 200)
+            }
+            
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
 }

@@ -23,6 +23,8 @@
 		FF7E6C2B28A3F575002163AD /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6C2A28A3F575002163AD /* PostViewModel.swift */; };
 		FFAECC5228ABBC0800A77B6E /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5128ABBC0800A77B6E /* InitialView.swift */; };
 		FFAECC5428ABBEF500A77B6E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5328ABBEF500A77B6E /* LoginView.swift */; };
+		FFAECC5628ABD01D00A77B6E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5528ABD01D00A77B6E /* UserModel.swift */; };
+		FFAECC5828ABDAC700A77B6E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		FF7E6C2A28A3F575002163AD /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		FFAECC5128ABBC0800A77B6E /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		FFAECC5328ABBEF500A77B6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		FFAECC5528ABD01D00A77B6E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				FF7E6C2628A3EC21002163AD /* PostModel.swift */,
+				FFAECC5528ABD01D00A77B6E /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				FF7E6C2A28A3F575002163AD /* PostViewModel.swift */,
+				FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -333,7 +339,9 @@
 				FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */,
 				FF7E6C2928A3ED53002163AD /* API.swift in Sources */,
 				FFAECC5428ABBEF500A77B6E /* LoginView.swift in Sources */,
+				FFAECC5828ABDAC700A77B6E /* UserViewModel.swift in Sources */,
 				FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */,
+				FFAECC5628ABD01D00A77B6E /* UserModel.swift in Sources */,
 				FF143F8728A526E000A452C8 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

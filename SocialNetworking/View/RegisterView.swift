@@ -9,6 +9,9 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    @ObservedObject var userViewModel:
+    UserViewModel = UserViewModel()
+    
     @State private var nameText : String = ""
     @State private var emailText : String = ""
     @State private var passwordText : String = ""
@@ -73,6 +76,13 @@ struct RegisterView: View {
     
     private var createButtonView : some View{
         Button{
+            Task{
+                let returned = await userViewModel.checkUser(name: nameText,
+                                        email: emailText,
+                                        password: passwordText,
+                                        passwordConfirmation: passwordConfirmationText)
+                print(returned)
+            }
             
         }label:{
             Text("Criar usuário")
