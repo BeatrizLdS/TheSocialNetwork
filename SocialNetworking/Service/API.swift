@@ -53,7 +53,7 @@ class API {
         return []
     }
     
-    static func addUser(user: User) async -> Bool{
+    static func addUser(user: User) async -> Bool {
         let url = URL(string: "http://adaspace.local/users")
         
         //Configuração da request
@@ -84,6 +84,39 @@ class API {
         }
         print("Caiu no ultimo false")
         return false
+    }
+    
+    
+    static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
+        
+        let url = URL(string: "http://adaspace.local/users/login")
+        
+        //configuração de request
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+
+        let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()
+        request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
+        
+        //realização de request
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            if error != nil{
+                print(error!)
+                return
+            }
+            if let data = data {
+                print(response)
+                do {
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    print(session)
+                    completionHandler(session)
+                }
+                catch{
+                    print("Could not decode the data. Error: \(error)")
+                }
+            }
+        }
+        task.resume()
     }
     
 }

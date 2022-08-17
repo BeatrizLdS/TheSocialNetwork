@@ -8,7 +8,14 @@
 import Foundation
 
 class UserViewModel: ObservableObject{
-    @Published var user: User? = nil
+    
+    @Published var userSession: Session? = nil
+    
+    @MainActor
+    func publishUserSession(session: Session){
+        self.userSession = session
+    }
+
     
     private func addUser(user: User) async -> Bool{
         await API.addUser(user: user)
@@ -24,5 +31,21 @@ class UserViewModel: ObservableObject{
         }
         return await addUser(user: user)
     }
+    
+    func checkLogin(email: String, password: String) {
+        API.loginUser(email: email, password: password){
+            session in
+            if session != nil{
+                DispatchQueue.main.async {
+                    self.userSession = session
+                }
+                print("deu certo")
+            }else{
+                print("deu errado")
+            }
+        }
+
+    }
+    
     
 }
