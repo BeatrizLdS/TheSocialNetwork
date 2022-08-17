@@ -79,7 +79,6 @@ struct RegisterView: View {
     private var createButtonView : some View{
         Button{
             Task{
-                
                 if (nameText == "" || emailText == "" || passwordText == "" || passwordConfirmationText == ""){
                     messageError = "Preencha todos os campos"
                 } else{

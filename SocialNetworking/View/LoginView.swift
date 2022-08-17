@@ -9,13 +9,19 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var emailText : String = ""
-    @State private var passwordText : String = ""
+    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
+    
+    @State private var messageError : String = ""
+    
+    @State private var emailText : String = "BeatrizLeonel@gmail.com"
+    @State private var passwordText : String = "senhaforte"
     
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
                 informationView
+                Text(messageError)
+                    .foregroundColor(.red)
                 loginButtonView
                 
             }
@@ -35,6 +41,13 @@ struct LoginView: View {
     
     private var loginButtonView: some View{
         Button{
+            Task{
+                if (emailText == "" || passwordText == ""){
+                    messageError = "Preencha todos os campos"
+                }else{
+                    let returned = await userViewModel.checkLogin(email: emailText, password: passwordText)
+                }
+            }
         }label:{
             Text("Entrar")
         }
