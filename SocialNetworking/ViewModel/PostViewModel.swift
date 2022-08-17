@@ -23,4 +23,6 @@ class PostViewModel: ObservableObject{
     private func fetchPostsWithImages() async -> [Post]{
         await API.getPosts()
     }
+    
+    
 }
