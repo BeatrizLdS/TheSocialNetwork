@@ -21,7 +21,6 @@ class UserViewModel: ObservableObject{
             return false
         }else{
             user = User(name: name, email: email, password: password)
-            
         }
         return await addUser(user: user)
     }

@@ -9,7 +9,6 @@ import Foundation
 
 class API {
     
-    
     static func execute(_ urlRequest: URLRequest) async throws -> Data  {
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         if let httpsResponse = response as? HTTPURLResponse{
@@ -60,22 +59,30 @@ class API {
         //Configuração da request
         var urlRequest = URLRequest(url: url!)
         urlRequest.httpMethod = "POST"
+        urlRequest.allHTTPHeaderFields = [
+            "accept": "application/json",
+            "Content-Type": "application/json"
+        ]
         
         do{
-            let serializationData = try JSONSerialization.data(withJSONObject: user, options: .fragmentsAllowed)
-            urlRequest.httpBody = serializationData
+            let payload = try JSONEncoder().encode(user)
+            urlRequest.httpBody = payload
             
             //Realização de request
             let(data, response) = try await URLSession.shared.data(for: urlRequest)
             
+            print(response)
+            print(data)
+            
             //Verificação da request
             if let responseHeader = response as? HTTPURLResponse {
-                return (responseHeader.statusCode == 200)
+                return ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300))
             }
             
         } catch {
             print(error)
         }
+        print("Caiu no ultimo false")
         return false
     }
     
