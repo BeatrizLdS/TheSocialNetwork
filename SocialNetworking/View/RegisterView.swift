@@ -9,8 +9,9 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @ObservedObject var userViewModel:
-    UserViewModel = UserViewModel()
+    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
+    
+    @State private var messageError : String = ""
     
     @State private var nameText : String = ""
     @State private var emailText : String = ""
@@ -21,11 +22,10 @@ struct RegisterView: View {
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
-                imageProfileView
                 informationView
+                Text(messageError)
+                    .foregroundColor(.red)
                 createButtonView
-                
-                
             }
             .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
             .padding(20)
@@ -45,6 +45,8 @@ struct RegisterView: View {
         }
     }
     
+    
+    // MARK: código do avatar
     private var imageProfileView : some View{
         VStack (alignment: .center, spacing: 1){
             Image(systemName: "person.fill")
@@ -77,11 +79,19 @@ struct RegisterView: View {
     private var createButtonView : some View{
         Button{
             Task{
-                let returned = await userViewModel.checkUser(name: nameText,
-                                        email: emailText,
-                                        password: passwordText,
-                                        passwordConfirmation: passwordConfirmationText)
-                print(returned)
+                
+                if (nameText == "" || emailText == "" || passwordText == "" || passwordConfirmationText == ""){
+                    messageError = "Preencha todos os campos"
+                } else{
+                    let returned = await userViewModel.checkUser(name: nameText,
+                                            email: emailText,
+                                            password: passwordText,
+                                            passwordConfirmation: passwordConfirmationText)
+                    print(returned)
+                    if !returned {
+                        messageError = "Senha incorreta ou Email já está cadastrado"
+                    }
+                }
             }
             
         }label:{
@@ -90,7 +100,6 @@ struct RegisterView: View {
         .buttonStyle(.borderedProminent)
         .controlSize(.regular)
     }
-    
 }
 
 struct RegisterView_Previews: PreviewProvider {
