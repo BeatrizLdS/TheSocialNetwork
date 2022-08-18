@@ -16,10 +16,11 @@ struct LoginView: View {
     @State private var emailText : String = "BeatrizLeonel@gmail.com"
     @State private var passwordText : String = "senhaforte"
     
+    
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
-                informationView
+                formsView
                 Text(messageError)
                     .foregroundColor(.red)
                 loginButtonView
@@ -30,7 +31,7 @@ struct LoginView: View {
         }
     }
     
-    private var informationView: some View{
+    private var formsView: some View{
         VStack (alignment: .center, spacing: 5){
             TextField("Email", text: $emailText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -45,7 +46,14 @@ struct LoginView: View {
                 if (emailText == "" || passwordText == ""){
                     messageError = "Preencha todos os campos"
                 }else{
-                    let returned = await userViewModel.checkLogin(email: emailText, password: passwordText)
+                    userViewModel.checkLogin(email: emailText,
+                                             password: passwordText,
+                                             completion: {
+                                                             returned in
+                                                                if returned == false{
+                                                                    messageError = "Email e/ou senha estão incorretos."
+                                                                }
+                                                        })
                 }
             }
         }label:{

@@ -11,10 +11,7 @@ import SwiftUI
 struct PostCell: View{
     let post : Post
     
-    init(
-        post: Post
-        
-    ){
+    init(post: Post){
         self.post = post
     }
     

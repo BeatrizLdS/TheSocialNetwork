@@ -10,8 +10,7 @@ import CoreData
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel:
-    PostViewModel = PostViewModel()
+    @ObservedObject var viewModel: PostViewModel = PostViewModel()
 
     var body: some View {
         ZStack{
@@ -38,7 +37,8 @@ struct ContentView: View {
     var postsListView: some View{
         ScrollView(.vertical, showsIndicators: false){
             ForEach(viewModel.postsList, id: \.id){
-                post in PostCell(post: post)
+                post in
+                PostCell(post: post)
                     .padding(20)
             }
         }

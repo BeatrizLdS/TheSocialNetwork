@@ -9,14 +9,6 @@ import Foundation
 
 class API {
     
-    static func execute(_ urlRequest: URLRequest) async throws -> Data  {
-        let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        if let httpsResponse = response as? HTTPURLResponse{
-            print("status: ", httpsResponse.statusCode)
-        }
-        return data
-    }
-    
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
@@ -53,7 +45,7 @@ class API {
         return []
     }
     
-    static func addUser(user: User) async -> Bool {
+    static func addUser(user: User) async -> Session? {
         let url = URL(string: "http://adaspace.local/users")
         
         //Configuração da request
@@ -76,14 +68,17 @@ class API {
             
             //Verificação da request
             if let responseHeader = response as? HTTPURLResponse {
-                return ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300))
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    return session
+                }
             }
             
         } catch {
             print(error)
         }
         print("Caiu no ultimo false")
-        return false
+        return nil
     }
     
     
@@ -101,14 +96,12 @@ class API {
         //realização de request
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             if error != nil{
-                print(error!)
                 return
             }
+            
             if let data = data {
-                print(response)
                 do {
                     let session = try JSONDecoder().decode(Session.self, from: data)
-                    print(session)
                     completionHandler(session)
                 }
                 catch{
