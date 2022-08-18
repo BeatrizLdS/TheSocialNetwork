@@ -19,6 +19,8 @@ struct RegisterView: View {
     @State private var passwordConfirmationText : String = ""
     @State private var avatarText: String = ""
     
+    @State private var isSigningIn : Bool = false
+    
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
@@ -29,6 +31,9 @@ struct RegisterView: View {
             }
             .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
             .padding(20)
+            .fullScreenCover(isPresented: $isSigningIn){
+                ContentView()
+            }
         }
     }
     
@@ -89,6 +94,8 @@ struct RegisterView: View {
                     print(returned)
                     if !returned {
                         messageError = "Senha incorreta ou Email já está cadastrado"
+                    } else {
+                        isSigningIn = true
                     }
                 }
             }

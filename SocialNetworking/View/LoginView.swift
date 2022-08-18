@@ -16,6 +16,8 @@ struct LoginView: View {
     @State private var emailText : String = "BeatrizLeonel@gmail.com"
     @State private var passwordText : String = "senhaforte"
     
+    @State private var isSigningIn : Bool = false
+    
     
     var body: some View {
         NavigationView{
@@ -28,6 +30,9 @@ struct LoginView: View {
             }
             .navigationBarTitle("Login", displayMode: .inline)
             .padding(20)
+            .fullScreenCover(isPresented: $isSigningIn){
+                ContentView()
+            }
         }
     }
     
@@ -52,6 +57,8 @@ struct LoginView: View {
                                                              returned in
                                                                 if returned == false{
                                                                     messageError = "Email e/ou senha estão incorretos."
+                                                                } else{
+                                                                    isSigningIn = true
                                                                 }
                                                         })
                 }

@@ -81,6 +81,29 @@ class API {
         return nil
     }
     
+    static func findUser(id: String) async -> User? {
+        let url = URL(string: "http://adaspace.local/users/\(id)")
+        
+        //setar requisição
+        var urlRequest = URLRequest(url: url!)
+        
+        do{
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            if let responseHeader = response as? HTTPURLResponse {
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let user = try JSONDecoder().decode(User.self, from: data)
+                    return user
+                }
+            }
+        }catch{
+            print("Deu ruim no meio do caminho")
+            print(error)
+        }
+        
+        return nil
+    }
+    
     
     static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
         
