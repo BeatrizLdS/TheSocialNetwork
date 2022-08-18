@@ -44,6 +44,8 @@ final class KeychainHelper{
             
             //atualiza o item
             SecItemUpdate(query, attributesToUpdate)
+            
+            print("Os dados do keychain foram atualizados")
         }
     }
     

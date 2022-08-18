@@ -24,5 +24,11 @@ class PostViewModel: ObservableObject{
         await API.getPosts()
     }
     
+    func findUserName(id: String)  async -> String {
+        (await findUser(id: id)).name
+    }
     
+    private func findUser(id: String) async -> User{
+        await API.findUser(id: id)!
+    }
 }
