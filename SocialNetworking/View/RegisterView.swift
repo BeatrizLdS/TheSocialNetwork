@@ -22,7 +22,7 @@ struct RegisterView: View {
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
-                informationView
+                formsView
                 Text(messageError)
                     .foregroundColor(.red)
                 createButtonView
@@ -32,7 +32,7 @@ struct RegisterView: View {
         }
     }
     
-    private var informationView: some View{
+    private var formsView: some View{
         VStack (alignment: .center, spacing: 5){
             TextField("Nome", text: $nameText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
