@@ -10,6 +10,8 @@ import CoreData
 
 struct ContentView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
 
     var body: some View {
@@ -28,7 +30,11 @@ struct ContentView: View {
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     Button{
-                        print("Fazer logout")
+                        Task{
+                            if (await viewModel.logOut()){
+                                dismiss()
+                            }
+                        }
                     }label: {
                         Text("LogOut")
                     }
@@ -38,7 +44,6 @@ struct ContentView: View {
     }
     var emptyStateView: some View {
         VStack {
-            Text("Loading").font(.title)
             ProgressView()
                 .progressViewStyle(.circular)
                 .scaleEffect(1.5)

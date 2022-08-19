@@ -85,9 +85,10 @@ class API {
         let url = URL(string: "http://adaspace.local/users/\(id)")
         
         //setar requisição
-        var urlRequest = URLRequest(url: url!)
+        let urlRequest = URLRequest(url: url!)
         
         do{
+            //realização de requisição
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
             if let responseHeader = response as? HTTPURLResponse {
@@ -135,4 +136,33 @@ class API {
         task.resume()
     }
     
+    static func logOut(token: String) async -> Session? {
+        
+        let url = URL(string: "http://adaspace.local/users/logout")
+        
+        print("Token de acesso: ", token)
+        
+        //configuração de request
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            //realização de requisição
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            print(response)
+            
+            if let responseHeader = response as? HTTPURLResponse {
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    print("Session de Logout:", session)
+                    return session
+                }
+            }
+        }catch{
+            print("Deu ruim no meio do caminho")
+            print(error)
+        }
+        return nil
+    }
 }
