@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct User : Codable {
+struct User : Codable { //Encodable + Decodable
     
     let name : String
     let email : String
-    let password : String
+    let password : String?
     let avatar : String?
     
-    init(name : String, email: String, password: String, avatar: String? = nil){
+    init(name : String, email: String, password: String? = nil, avatar: String? = nil){
         self.name = name
         self.email = email
         self.password = password

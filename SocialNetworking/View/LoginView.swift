@@ -9,22 +9,34 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var emailText : String = ""
-    @State private var passwordText : String = ""
+    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
+    
+    @State private var messageError : String = ""
+    
+    @State private var emailText : String = "BeatrizLeonel@gmail.com"
+    @State private var passwordText : String = "senhaforte"
+    
+    @State private var isSigningIn : Bool = false
+    
     
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
-                informationView
+                formsView
+                Text(messageError)
+                    .foregroundColor(.red)
                 loginButtonView
                 
             }
             .navigationBarTitle("Login", displayMode: .inline)
             .padding(20)
+            .fullScreenCover(isPresented: $isSigningIn){
+                ContentView()
+            }
         }
     }
     
-    private var informationView: some View{
+    private var formsView: some View{
         VStack (alignment: .center, spacing: 5){
             TextField("Email", text: $emailText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -35,6 +47,22 @@ struct LoginView: View {
     
     private var loginButtonView: some View{
         Button{
+            Task{
+                if (emailText == "" || passwordText == ""){
+                    messageError = "Preencha todos os campos"
+                }else{
+                    userViewModel.checkLogin(email: emailText,
+                                             password: passwordText,
+                                             completion: {
+                                                             returned in
+                                                                if returned == false{
+                                                                    messageError = "Email e/ou senha estão incorretos."
+                                                                } else{
+                                                                    isSigningIn = true
+                                                                }
+                                                        })
+                }
+            }
         }label:{
             Text("Entrar")
         }

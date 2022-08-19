@@ -26,6 +26,7 @@
 		FFAECC5628ABD01D00A77B6E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5528ABD01D00A77B6E /* UserModel.swift */; };
 		FFAECC5828ABDAC700A77B6E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */; };
 		FFAECC5A28ABF22F00A77B6E /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5928ABF22F00A77B6E /* SessionModel.swift */; };
+		FFAECC5C28AE5B0C00A77B6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		FFAECC5528ABD01D00A77B6E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		FFAECC5928ABF22F00A77B6E /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				FF7E6C2828A3ED53002163AD /* API.swift */,
+				FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				FFAECC5628ABD01D00A77B6E /* UserModel.swift in Sources */,
 				FFAECC5A28ABF22F00A77B6E /* SessionModel.swift in Sources */,
 				FF143F8728A526E000A452C8 /* PostCell.swift in Sources */,
+				FFAECC5C28AE5B0C00A77B6E /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,19 +10,30 @@ import CoreData
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel:
-    PostViewModel = PostViewModel()
+    @ObservedObject var viewModel: PostViewModel = PostViewModel()
 
     var body: some View {
-        ZStack{
-            if viewModel.postsList.isEmpty {
-                emptyStateView
-            } else {
-                postsListView
+        NavigationView{
+            ZStack{
+                if viewModel.postsList.isEmpty {
+                    emptyStateView
+                } else {
+                    postsListView
+                }
             }
-        }
-        .task{
-            await viewModel.fetchPosts()
+            .task{
+                await viewModel.fetchPosts()
+            }
+            .navigationBarTitle("Feed", displayMode: .inline)
+            .toolbar{
+                ToolbarItem(placement: .primaryAction){
+                    Button{
+                        print("Fazer logout")
+                    }label: {
+                        Text("LogOut")
+                    }
+                }
+            }
         }
     }
     var emptyStateView: some View {
@@ -38,8 +49,9 @@ struct ContentView: View {
     var postsListView: some View{
         ScrollView(.vertical, showsIndicators: false){
             ForEach(viewModel.postsList, id: \.id){
-                post in PostCell(post: post)
-                    .padding(20)
+                post in
+                PostCell(post: post, viewModel: viewModel)
+                    .padding(10)
             }
         }
     }

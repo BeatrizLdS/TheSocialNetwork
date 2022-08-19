@@ -19,20 +19,25 @@ struct RegisterView: View {
     @State private var passwordConfirmationText : String = ""
     @State private var avatarText: String = ""
     
+    @State private var isSigningIn : Bool = false
+    
     var body: some View {
         NavigationView{
             VStack (alignment: .center, spacing: 20) {
-                informationView
+                formsView
                 Text(messageError)
                     .foregroundColor(.red)
                 createButtonView
             }
             .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
             .padding(20)
+            .fullScreenCover(isPresented: $isSigningIn){
+                ContentView()
+            }
         }
     }
     
-    private var informationView: some View{
+    private var formsView: some View{
         VStack (alignment: .center, spacing: 5){
             TextField("Nome", text: $nameText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -79,7 +84,6 @@ struct RegisterView: View {
     private var createButtonView : some View{
         Button{
             Task{
-                
                 if (nameText == "" || emailText == "" || passwordText == "" || passwordConfirmationText == ""){
                     messageError = "Preencha todos os campos"
                 } else{
@@ -90,6 +94,8 @@ struct RegisterView: View {
                     print(returned)
                     if !returned {
                         messageError = "Senha incorreta ou Email já está cadastrado"
+                    } else {
+                        isSigningIn = true
                     }
                 }
             }

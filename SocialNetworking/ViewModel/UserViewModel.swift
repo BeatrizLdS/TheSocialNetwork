@@ -8,9 +8,15 @@
 import Foundation
 
 class UserViewModel: ObservableObject{
-    @Published var user: User? = nil
     
-    private func addUser(user: User) async -> Bool{
+    @Published var userSession: Session? = nil
+    
+    @MainActor
+    func publishUserSession(session: Session){
+        self.userSession = session
+    }
+    
+    private func addUser(user: User) async -> Session?{
         await API.addUser(user: user)
     }
     
@@ -22,7 +28,37 @@ class UserViewModel: ObservableObject{
         }else{
             user = User(name: name, email: email, password: password)
         }
-        return await addUser(user: user)
+        
+        let returned = await addUser(user: user)
+        if returned != nil{
+            await publishUserSession(session: returned!)
+            // Salvando token no keychain
+            let data = Data(userSession!.token.utf8)
+            KeychainHelper.standard.save(data: data, service: "access-token", account: "api-matheus")
+            
+            return true
+        }
+        return false
     }
     
+    func checkLogin(email: String, password: String, completion: @escaping (Bool) -> Void) {
+        API.loginUser(email: email, password: password, completionHandler: {
+            session in
+            if session != nil{
+                DispatchQueue.main.async {
+                    self.userSession = session
+                    
+                    //salvando token no keychain
+                    let data = Data(self.userSession!.token.utf8)
+                    KeychainHelper.standard.save(data: data, service: "access-token", account: "api-matheus")
+                    
+                    completion(true)
+                }
+            }else{
+                print("deu errado")
+                completion(false)
+            }
+        })
+    }
+
 }

@@ -9,14 +9,6 @@ import Foundation
 
 class API {
     
-    static func execute(_ urlRequest: URLRequest) async throws -> Data  {
-        let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        if let httpsResponse = response as? HTTPURLResponse{
-            print("status: ", httpsResponse.statusCode)
-        }
-        return data
-    }
-    
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
@@ -53,7 +45,7 @@ class API {
         return []
     }
     
-    static func addUser(user: User) async -> Bool{
+    static func addUser(user: User) async -> Session? {
         let url = URL(string: "http://adaspace.local/users")
         
         //Configuração da request
@@ -76,14 +68,71 @@ class API {
             
             //Verificação da request
             if let responseHeader = response as? HTTPURLResponse {
-                return ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300))
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    return session
+                }
             }
             
         } catch {
             print(error)
         }
         print("Caiu no ultimo false")
-        return false
+        return nil
+    }
+    
+    static func findUser(id: String) async -> User? {
+        let url = URL(string: "http://adaspace.local/users/\(id)")
+        
+        //setar requisição
+        var urlRequest = URLRequest(url: url!)
+        
+        do{
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            if let responseHeader = response as? HTTPURLResponse {
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let user = try JSONDecoder().decode(User.self, from: data)
+                    return user
+                }
+            }
+        }catch{
+            print("Deu ruim no meio do caminho")
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    
+    static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
+        
+        let url = URL(string: "http://adaspace.local/users/login")
+        
+        //configuração de request
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+
+        let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()
+        request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
+        
+        //realização de request
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+            if error != nil{
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    completionHandler(session)
+                }
+                catch{
+                    print("Could not decode the data. Error: \(error)")
+                }
+            }
+        }
+        task.resume()
     }
     
 }
