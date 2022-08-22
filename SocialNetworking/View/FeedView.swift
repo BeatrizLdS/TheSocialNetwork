@@ -8,7 +8,9 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct FeedView: View {
+    
+    @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
 
@@ -28,7 +30,11 @@ struct ContentView: View {
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
                     Button{
-                        print("Fazer logout")
+                        Task{
+                            if (await viewModel.logOut()){
+                                dismiss()
+                            }
+                        }
                     }label: {
                         Text("LogOut")
                     }
@@ -38,7 +44,6 @@ struct ContentView: View {
     }
     var emptyStateView: some View {
         VStack {
-            Text("Loading").font(.title)
             ProgressView()
                 .progressViewStyle(.circular)
                 .scaleEffect(1.5)
@@ -59,8 +64,8 @@ struct ContentView: View {
 }
 
 
-struct ContentView_Previews: PreviewProvider {
+struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        FeedView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

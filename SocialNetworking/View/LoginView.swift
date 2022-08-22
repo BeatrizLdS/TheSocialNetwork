@@ -31,7 +31,7 @@ struct LoginView: View {
             .navigationBarTitle("Login", displayMode: .inline)
             .padding(20)
             .fullScreenCover(isPresented: $isSigningIn){
-                ContentView()
+                FeedView()
             }
         }
     }
