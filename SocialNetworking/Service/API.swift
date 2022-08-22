@@ -105,7 +105,6 @@ class API {
         return nil
     }
     
-    
     static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
         
         let url = URL(string: "http://adaspace.local/users/login")
@@ -118,7 +117,7 @@ class API {
         request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
         
         //realização de request
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             if error != nil{
                 return
             }
@@ -132,7 +131,7 @@ class API {
                     print("Could not decode the data. Error: \(error)")
                 }
             }
-        }
+        })
         task.resume()
     }
     
