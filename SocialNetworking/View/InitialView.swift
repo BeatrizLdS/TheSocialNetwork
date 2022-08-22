@@ -40,7 +40,6 @@ struct InitialView: View {
     private var loginButton : some View {
         Button{
             self.showingLoginView = true
-            print("Botao de logar")
         }label: {
             Text("Entrar")
         }
