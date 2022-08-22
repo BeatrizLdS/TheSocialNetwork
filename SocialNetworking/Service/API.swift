@@ -12,7 +12,9 @@ class API {
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
-        let url : URL = URL(string: "http://adaspace.local/posts")!
+//        let url : URL = URL(string: "http://adaspace.local/posts")!
+        let url : URL = URL(string: "http://localhost/posts")!
+        
         let urlRequest = URLRequest(url: url)
 
         //Executar requisicao
@@ -46,7 +48,7 @@ class API {
     }
     
     static func addUser(user: User) async -> Session? {
-        let url = URL(string: "http://adaspace.local/users")
+        let url = URL(string: "http://localhost/users")
         
         //Configuração da request
         var urlRequest = URLRequest(url: url!)
@@ -82,7 +84,7 @@ class API {
     }
     
     static func findUser(id: String) async -> User? {
-        let url = URL(string: "http://adaspace.local/users/\(id)")
+        let url = URL(string: "http://localhost/users/\(id)")
         
         //setar requisição
         var urlRequest = URLRequest(url: url!)
@@ -107,7 +109,7 @@ class API {
     
     static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
         
-        let url = URL(string: "http://adaspace.local/users/login")
+        let url = URL(string: "http://localhost/users/login")
         
         //configuração de request
         var request = URLRequest(url: url!)
