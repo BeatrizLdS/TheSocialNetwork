@@ -31,4 +31,15 @@ class PostViewModel: ObservableObject{
     private func findUser(id: String) async -> User{
         await API.findUser(id: id)!
     }
+    
+    func logOut() async -> Bool{
+        let token = KeychainHelper.standard.read(service: "access-token", account: "api-matheus")!
+        let accessToken = String(data: token, encoding: .utf8)!
+        if let _ = await API.logOut(token: accessToken) {
+            KeychainHelper.standard.delete(service: "access-token", account: "api-matheus")
+            return true
+        }
+        return false
+    }
+    
 }

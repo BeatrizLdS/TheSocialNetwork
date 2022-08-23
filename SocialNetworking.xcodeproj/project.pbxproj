@@ -10,7 +10,7 @@
 		FF143F8728A526E000A452C8 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF143F8628A526E000A452C8 /* PostCell.swift */; };
 		FF143F8C28A54BB300A452C8 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF143F8B28A54BB300A452C8 /* RegisterView.swift */; };
 		FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */; };
-		FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BF528A3E979002163AD /* ContentView.swift */; };
+		FF7E6BF628A3E979002163AD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BF528A3E979002163AD /* FeedView.swift */; };
 		FF7E6BF828A3E97A002163AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7E6BF728A3E97A002163AD /* Assets.xcassets */; };
 		FF7E6BFB28A3E97A002163AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7E6BFA28A3E97A002163AD /* Preview Assets.xcassets */; };
 		FF7E6BFD28A3E97A002163AD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7E6BFC28A3E97A002163AD /* Persistence.swift */; };
@@ -27,6 +27,7 @@
 		FFAECC5828ABDAC700A77B6E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */; };
 		FFAECC5A28ABF22F00A77B6E /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5928ABF22F00A77B6E /* SessionModel.swift */; };
 		FFAECC5C28AE5B0C00A77B6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */; };
+		FFC22C5228B3FF2F007D6DD3 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC22C5128B3FF2F007D6DD3 /* Url.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +52,7 @@
 		FF143F8B28A54BB300A452C8 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		FF7E6BF028A3E979002163AD /* SocialNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF7E6BF328A3E979002163AD /* SocialNetworkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworkingApp.swift; sourceTree = "<group>"; };
-		FF7E6BF528A3E979002163AD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF7E6BF528A3E979002163AD /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		FF7E6BF728A3E97A002163AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF7E6BFA28A3E97A002163AD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FF7E6BFC28A3E97A002163AD /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		FFAECC5728ABDAC700A77B6E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		FFAECC5928ABF22F00A77B6E /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		FFC22C5128B3FF2F007D6DD3 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				FF7E6C2828A3ED53002163AD /* API.swift */,
 				FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */,
+				FFC22C5128B3FF2F007D6DD3 /* Url.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -188,7 +191,7 @@
 		FF7E6C2428A3EB12002163AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FF7E6BF528A3E979002163AD /* ContentView.swift */,
+				FF7E6BF528A3E979002163AD /* FeedView.swift */,
 				FF143F8628A526E000A452C8 /* PostCell.swift */,
 				FF143F8B28A54BB300A452C8 /* RegisterView.swift */,
 				FFAECC5128ABBC0800A77B6E /* InitialView.swift */,
@@ -342,7 +345,8 @@
 				FFAECC5228ABBC0800A77B6E /* InitialView.swift in Sources */,
 				FF7E6C2728A3EC21002163AD /* PostModel.swift in Sources */,
 				FF7E6BFD28A3E97A002163AD /* Persistence.swift in Sources */,
-				FF7E6BF628A3E979002163AD /* ContentView.swift in Sources */,
+				FF7E6BF628A3E979002163AD /* FeedView.swift in Sources */,
+				FFC22C5228B3FF2F007D6DD3 /* Url.swift in Sources */,
 				FF7E6C2928A3ED53002163AD /* API.swift in Sources */,
 				FFAECC5428ABBEF500A77B6E /* LoginView.swift in Sources */,
 				FFAECC5828ABDAC700A77B6E /* UserViewModel.swift in Sources */,
