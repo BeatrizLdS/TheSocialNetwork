@@ -35,7 +35,6 @@ class API {
                 //Verificar a resposta
                 switch httpsResponse.statusCode{
                     case 200...300:
-                        print("Os dados dos posts foram recebidos com sucesso")
                         
                         //Decode data => Post
                         print(data)

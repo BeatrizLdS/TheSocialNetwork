@@ -29,19 +29,40 @@ struct FeedView: View {
             .navigationBarTitle("Feed", displayMode: .inline)
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
-                    Button{
-                        Task{
-                            if (await viewModel.logOut()){
-                                dismiss()
-                            }
-                        }
-                    }label: {
-                        Text("LogOut")
-                    }
+                    logoutButton
+                }
+                ToolbarItem(placement: .bottomBar){
+                    addPostButton
                 }
             }
         }
     }
+    
+    private var logoutButton : some View {
+        Button{
+            Task{
+                if (await viewModel.logOut()){
+                    dismiss()
+                }
+            }
+        }label: {
+            Text("LogOut")
+        }
+    }
+    
+    private var addPostButton: some View {
+        HStack{
+            Button {
+                print("botão de adicionar post")
+            } label: {
+                Label("Adicionar publicação", systemImage: "square.and.pencil")
+                    .labelStyle(.titleAndIcon)
+            }
+            .controlSize(.large)
+            Spacer()
+        }
+    }
+    
     var emptyStateView: some View {
         VStack {
             ProgressView()
