@@ -46,7 +46,7 @@ class UserViewModel: ObservableObject{
             session in
             if session != nil{
                 DispatchQueue.main.async {
-                    self.userSession = session
+                    self.userSession = session! as? Session
                     
                     //salvando token no keychain
                     let data = Data(self.userSession!.token.utf8)
