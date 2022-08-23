@@ -13,7 +13,7 @@ struct LoginView: View {
     
     @State private var messageError : String = ""
     
-    @State private var emailText : String = "BeatrizLeonel@gmail.com"
+    @State private var emailText : String = "beatrizleonel@gmail.com"
     @State private var passwordText : String = "senhaforte"
     
     @State private var isSigningIn : Bool = false
