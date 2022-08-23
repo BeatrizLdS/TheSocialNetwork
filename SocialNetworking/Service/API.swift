@@ -12,12 +12,14 @@ class API {
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
-        let url : URL = URL(string: "http://adaspace.local/posts")!
-        let urlRequest = URLRequest(url: url)
+        let urlRequest = URLRequest(url: Url().urlGetPosts)
 
         //Executar requisicao
         do{
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            print("\n\nResponse:\n\n")
+            print(response)
             
             if let httpsResponse = response as? HTTPURLResponse{
                 print("status: ", httpsResponse.statusCode)
@@ -46,10 +48,10 @@ class API {
     }
     
     static func addUser(user: User) async -> Session? {
-        let url = URL(string: "http://adaspace.local/users")
+        let url = URL(string: "http://localhost:8080/users")!
         
         //Configuração da request
-        var urlRequest = URLRequest(url: url!)
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.allHTTPHeaderFields = [
             "accept": "application/json",
@@ -82,12 +84,13 @@ class API {
     }
     
     static func findUser(id: String) async -> User? {
-        let url = URL(string: "http://adaspace.local/users/\(id)")
+        let url = URL(string: "http://localhost:8080/users/\(id)")
         
         //setar requisição
-        var urlRequest = URLRequest(url: url!)
+        let urlRequest = URLRequest(url: url!)
         
         do{
+            //realização de requisição
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
             if let responseHeader = response as? HTTPURLResponse {
@@ -104,20 +107,19 @@ class API {
         return nil
     }
     
-    
     static func loginUser(email: String, password: String, completionHandler: @escaping (Session?) -> Void) {
         
-        let url = URL(string: "http://adaspace.local/users/login")
+        let url = Url().urlLoginUser
         
         //configuração de request
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()
         request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
         
         //realização de request
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             if error != nil{
                 return
             }
@@ -131,8 +133,37 @@ class API {
                     print("Could not decode the data. Error: \(error)")
                 }
             }
-        }
+        })
         task.resume()
     }
     
+    static func logOut(token: String) async -> Session? {
+        
+        let url = URL(string: "http://localhost:8080/users/logout")
+        
+        print("Token de acesso: ", token)
+        
+        //configuração de request
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        do{
+            //realização de requisição
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            print(response)
+            
+            if let responseHeader = response as? HTTPURLResponse {
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let session = try JSONDecoder().decode(Session.self, from: data)
+                    print("Session de Logout:", session)
+                    return session
+                }
+            }
+        }catch{
+            print("Deu ruim no meio do caminho")
+            print(error)
+        }
+        return nil
+    }
 }
