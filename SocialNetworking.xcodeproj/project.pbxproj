@@ -28,6 +28,7 @@
 		FFAECC5A28ABF22F00A77B6E /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5928ABF22F00A77B6E /* SessionModel.swift */; };
 		FFAECC5C28AE5B0C00A77B6E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */; };
 		FFC22C5228B3FF2F007D6DD3 /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC22C5128B3FF2F007D6DD3 /* Url.swift */; };
+		FFC22C5428B51847007D6DD3 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC22C5328B51847007D6DD3 /* CreatePostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		FFAECC5928ABF22F00A77B6E /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		FFAECC5B28AE5B0C00A77B6E /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		FFC22C5128B3FF2F007D6DD3 /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		FFC22C5328B51847007D6DD3 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				FF143F8B28A54BB300A452C8 /* RegisterView.swift */,
 				FFAECC5128ABBC0800A77B6E /* InitialView.swift */,
 				FFAECC5328ABBEF500A77B6E /* LoginView.swift */,
+				FFC22C5328B51847007D6DD3 /* CreatePostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				FF7E6BF428A3E979002163AD /* SocialNetworkingApp.swift in Sources */,
 				FFAECC5628ABD01D00A77B6E /* UserModel.swift in Sources */,
 				FFAECC5A28ABF22F00A77B6E /* SessionModel.swift in Sources */,
+				FFC22C5428B51847007D6DD3 /* CreatePostView.swift in Sources */,
 				FF143F8728A526E000A452C8 /* PostCell.swift in Sources */,
 				FFAECC5C28AE5B0C00A77B6E /* Keychain.swift in Sources */,
 			);

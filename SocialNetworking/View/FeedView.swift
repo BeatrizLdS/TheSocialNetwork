@@ -13,6 +13,8 @@ struct FeedView: View {
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
+    
+    @State var postText : String = ""
 
     var body: some View {
         NavigationView{
@@ -20,7 +22,12 @@ struct FeedView: View {
                 if viewModel.postsList.isEmpty {
                     emptyStateView
                 } else {
-                    postsListView
+                    VStack{
+                        addPostArea
+                        postsListView
+                        Spacer()
+                    }
+                    
                 }
             }
             .task{
@@ -31,9 +38,9 @@ struct FeedView: View {
                 ToolbarItem(placement: .primaryAction){
                     logoutButton
                 }
-                ToolbarItem(placement: .bottomBar){
-                    addPostButton
-                }
+//                ToolbarItem(placement: .bottomBar){
+//                    addPostButton
+//                }
             }
         }
     }
@@ -50,17 +57,25 @@ struct FeedView: View {
         }
     }
     
-    private var addPostButton: some View {
+    private var addPostArea: some View {
         HStack{
+            TextField("Escreva aqui", text: $postText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             Button {
-                print("botão de adicionar post")
+                Task{
+                    if await viewModel.addPosts(postText: self.postText){
+                        self.postText = ""
+                    }
+                }
             } label: {
-                Label("Adicionar publicação", systemImage: "square.and.pencil")
-                    .labelStyle(.titleAndIcon)
+                Label("Publicar", systemImage: "paperplane.fill")
+                    .labelStyle(.iconOnly)
             }
             .controlSize(.large)
-            Spacer()
         }
+        
+        .padding()
+        .background(.gray.opacity(0.5))
     }
     
     var emptyStateView: some View {

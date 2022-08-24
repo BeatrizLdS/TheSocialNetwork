@@ -11,6 +11,7 @@ struct InitialView: View {
     
     @State private var showingRegisterView : Bool = false
     @State private var showingLoginView : Bool = false
+    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
     
     var body: some View {
         NavigationView {
@@ -19,10 +20,10 @@ struct InitialView: View {
                 loginButton
             }
             .sheet(isPresented: $showingRegisterView){
-                RegisterView()
+                RegisterView(userViewModel: userViewModel)
             }
             .sheet(isPresented: $showingLoginView){
-                LoginView()
+                LoginView(userViewModel: userViewModel)
             }
         }
     }
