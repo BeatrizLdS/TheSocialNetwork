@@ -13,6 +13,8 @@ struct FeedView: View {
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: PostViewModel = PostViewModel()
+    
+    @State var postText : String = ""
 
     var body: some View {
         NavigationView{
@@ -20,7 +22,12 @@ struct FeedView: View {
                 if viewModel.postsList.isEmpty {
                     emptyStateView
                 } else {
-                    postsListView
+                    VStack{
+                        addPostArea
+                        postsListView
+                        Spacer()
+                    }
+                    
                 }
             }
             .task{
@@ -29,19 +36,48 @@ struct FeedView: View {
             .navigationBarTitle("Feed", displayMode: .inline)
             .toolbar{
                 ToolbarItem(placement: .primaryAction){
-                    Button{
-                        Task{
-                            if (await viewModel.logOut()){
-                                dismiss()
-                            }
-                        }
-                    }label: {
-                        Text("LogOut")
-                    }
+                    logoutButton
                 }
+//                ToolbarItem(placement: .bottomBar){
+//                    addPostButton
+//                }
             }
         }
     }
+    
+    private var logoutButton : some View {
+        Button{
+            Task{
+                if (await viewModel.logOut()){
+                    dismiss()
+                }
+            }
+        }label: {
+            Text("LogOut")
+        }
+    }
+    
+    private var addPostArea: some View {
+        HStack{
+            TextField("Escreva aqui", text: $postText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button {
+                Task{
+                    if await viewModel.addPosts(postText: self.postText){
+                        self.postText = ""
+                    }
+                }
+            } label: {
+                Label("Publicar", systemImage: "paperplane.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .controlSize(.large)
+        }
+        
+        .padding()
+        .background(.gray.opacity(0.5))
+    }
+    
     var emptyStateView: some View {
         VStack {
             ProgressView()

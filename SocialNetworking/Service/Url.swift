@@ -28,7 +28,7 @@ struct Url{
         return components
     }
     
-    var urlGetPosts : URL {
+    var urlPosts : URL {
         var urlComponents = urlBase
         urlComponents.path = "/posts"
         print(urlComponents.url!)
@@ -62,5 +62,6 @@ struct Url{
         print(urlComponents.url!)
         return urlComponents.url!
     }
+    
     
 }

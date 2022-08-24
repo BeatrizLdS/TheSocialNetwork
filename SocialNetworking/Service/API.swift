@@ -20,7 +20,7 @@ class API {
     static func getPosts() async -> [Post] {
         
         //Criar requisicao
-        let urlRequest = URLRequest(url: Url(host: localhost, port: port).urlGetPosts)
+        let urlRequest = URLRequest(url: Url(host: localhost, port: port).urlPosts)
 
         //Executar requisicao
         do{
@@ -35,7 +35,6 @@ class API {
                 //Verificar a resposta
                 switch httpsResponse.statusCode{
                     case 200...300:
-                        print("Os dados dos posts foram recebidos com sucesso")
                         
                         //Decode data => Post
                         print(data)
@@ -120,7 +119,7 @@ class API {
     
     static func loginUser(email: String, password: String, completionHandler: @escaping ( Session?) -> Void) {
         
-        var url = Url(host: localhost, port: port).urlLoginUser
+        let url = Url(host: localhost, port: port).urlLoginUser
         
         //configuração de request
         var request = URLRequest(url: url)
@@ -179,6 +178,39 @@ class API {
                 if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
                     let session = try JSONDecoder().decode(Session.self, from: data)
                     return session
+                }
+            }
+        }catch{
+            print("Deu ruim no meio do caminho")
+            print(error)
+        }
+        return nil
+    }
+    
+    //Conversão para o tipo data não faz sentido na API!!!!
+    static func addPosts(token: String, postText: Data) async -> Post?{
+        let url = Url(host: localhost, port: port).urlPosts
+
+        print("Token de acesso: ", token)
+        
+        //configuração de request
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("text/plain", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = postText
+        
+        do{
+            //realização de requisição
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            
+            print("Add Post Response: ")
+            print(response)
+            
+            if let responseHeader = response as? HTTPURLResponse {
+                if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
+                    let post = try JSONDecoder().decode(Post.self, from: data)
+                    return post
                 }
             }
         }catch{

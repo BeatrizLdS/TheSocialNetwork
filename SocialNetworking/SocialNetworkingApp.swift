@@ -13,6 +13,10 @@ struct SocialNetworkingApp: App {
 
     var body: some Scene {
         WindowGroup {
+        
+//            let accessToken = String(data: token, encoding: .utf8)!
+//            
+//            if let token = KeychainHelper.standard.read(service: "access-token", account: "api-matheus")!
             InitialView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

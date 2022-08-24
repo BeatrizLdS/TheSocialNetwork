@@ -42,4 +42,15 @@ class PostViewModel: ObservableObject{
         return false
     }
     
+    func addPosts(postText: String) async -> Bool{
+        let token = KeychainHelper.standard.read(service: "access-token", account: "api-matheus")!
+        let accessToken = String(data: token, encoding: .utf8)!
+        let dataPostText = Data(postText.utf8)
+        if let _ = await API.addPosts(token: accessToken, postText: dataPostText) {
+            await fetchPosts()
+            return true
+        }
+        return false
+    }
+    
 }
