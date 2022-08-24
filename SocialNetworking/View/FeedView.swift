@@ -92,7 +92,7 @@ struct FeedView: View {
             ForEach(viewModel.postsList, id: \.id){
                 post in
                 PostCell(post: post, viewModel: viewModel)
-                    .padding(10)
+                    .padding(6)
             }
         }
     }
