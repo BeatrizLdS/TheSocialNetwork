@@ -63,5 +63,11 @@ struct Url{
         return urlComponents.url!
     }
     
-    
+    var urlAddLike : URL {
+        var urlComponents = urlBase
+        urlComponents.path = "/likes"
+        print(urlComponents.url!)
+        return urlComponents.url!
+    }
+
 }
