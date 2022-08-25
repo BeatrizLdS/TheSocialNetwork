@@ -49,11 +49,11 @@ struct Url{
         return urlComponents.url!
     }
     
-    var urlFindUser : String {
+    var urlFindUser : URL {
         var urlComponents = urlBase
         urlComponents.path = "/users/"
-        print(urlComponents.string!)
-        return urlComponents.string!
+        print(urlComponents.url!)
+        return urlComponents.url!
     }
     
     var urlLogout : URL {
@@ -63,9 +63,16 @@ struct Url{
         return urlComponents.url!
     }
     
-    var urlAddLike : URL {
+    var urlLike : URL {
         var urlComponents = urlBase
         urlComponents.path = "/likes"
+        print(urlComponents.url!)
+        return urlComponents.url!
+    }
+    
+    var urlLikedByUser : URL {
+        var urlComponents = urlBase
+        urlComponents.path = "/likes/liked_posts/"
         print(urlComponents.url!)
         return urlComponents.url!
     }

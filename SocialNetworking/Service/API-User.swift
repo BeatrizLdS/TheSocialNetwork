@@ -17,43 +17,6 @@ class API {
         case serviceError
     }
     
-    static func getPosts() async -> [Post] {
-        
-        //Criar requisicao
-        let urlRequest = URLRequest(url: Url(host: localhost, port: port).urlPosts)
-
-        //Executar requisicao
-        do{
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            
-            print("GetPost Response: ")
-            print(response)
-            
-            if let httpsResponse = response as? HTTPURLResponse{
-                print("status: ", httpsResponse.statusCode)
-                
-                //Verificar a resposta
-                switch httpsResponse.statusCode{
-                    case 200...300:
-                        
-                        //Decode data => Post
-                        print(data)
-                        let postsList : [Post] = try JSONDecoder().decode([Post].self, from: data)
-                        print("Deu bom transformar os dados!")
-                        return postsList
-                        
-                    default:
-                        print("Deu ruim quando foi receber os dados do post")
-                }
-            }
-        }catch{
-            print("Deu ruim no meio do caminho")
-            print(error)
-        }
-        
-        return []
-    }
-    
     static func addUser(user: User) async -> Session? {
         let urlComponents = Url(host: localhost, port: port).urlRegisterUser
         
@@ -90,8 +53,8 @@ class API {
         return nil
     }
     
-    static func findUser(id: String) async -> User? {
-        let url = URL(string: Url(host: localhost, port: port).urlFindUser + "\(id)")
+    static func findUserByID(id: String) async -> User? {
+        let url = URL(string: Url(host: localhost, port: port).urlFindUser.absoluteString + "\(id)")
         
         //setar requisição
         let urlRequest = URLRequest(url: url!)
@@ -187,30 +150,26 @@ class API {
         return nil
     }
     
-    //Conversão para o tipo data não faz sentido na API!!!!
-    static func addPosts(token: String, postText: Data) async -> Post?{
-        let url = Url(host: localhost, port: port).urlPosts
-
+    static func getCurrentUser (token: String) async -> User? {
+        let url = URL(string: Url(host: localhost, port: 8080).urlFindUser.absoluteString + "me")
         print("Token de acesso: ", token)
         
         //configuração de request
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = "GET"
         urlRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.addValue("text/plain", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = postText
         
         do{
             //realização de requisição
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
-            print("Add Post Response: ")
+            print("Get current user Response: ")
             print(response)
             
             if let responseHeader = response as? HTTPURLResponse {
                 if ((responseHeader.statusCode >= 200) && (responseHeader.statusCode < 300)){
-                    let post = try JSONDecoder().decode(Post.self, from: data)
-                    return post
+                    let user = try JSONDecoder().decode(User.self, from: data)
+                    return user
                 }
             }
         }catch{
@@ -219,5 +178,5 @@ class API {
         }
         return nil
     }
-    
+
 }

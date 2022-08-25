@@ -32,7 +32,7 @@ struct RegisterView: View {
             .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
             .padding(20)
             .fullScreenCover(isPresented: $isSigningIn){
-                FeedView()
+                FeedView(viewModel: PostViewModel())
             }
         }
     }

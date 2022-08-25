@@ -11,13 +11,15 @@ import SwiftUI
 struct PostCell: View{
     
     @ObservedObject var viewModel: PostViewModel
-    let post : Post
-    @State var userName : String = ""
-    @State var favorite : Bool = false
     
-    init(post: Post, viewModel : PostViewModel){
+    @State var post : Post
+    @State var userName : String = ""
+    @State var favorite : Bool 
+    
+    init(post: Post, viewModel : PostViewModel, favorite: Bool){
         self.post = post
         self.viewModel = viewModel
+        self.favorite = favorite
     }
     
     var body: some View{
@@ -62,7 +64,24 @@ struct PostCell: View{
     
     private var favoriteButton : some View {
         Button{
-            favorite.toggle()
+            Task{
+                print(favorite)
+                if !favorite {
+                    if let post = await viewModel.addLikeToPost(postID: post.id){
+                        self.post = post
+                        favorite.toggle()
+                    }
+                } else {
+                    if await viewModel.removeLikeToPost(postID: post.id){
+                        if let post = await viewModel.updatePost(postID: post.id){
+                            self.post = post
+                            favorite.toggle()
+                        }
+                    }
+                }
+                
+            }
+            
         } label: {
             HStack (spacing: 2){
                 ZStack {
@@ -94,6 +113,7 @@ struct PostCell_Previews: PreviewProvider {
                             userId: "F26FA5D1-3C02-4E66-A88F-326A415F11DC",
                             createdAt: "Data de inicio",
                             updatedAt: "Data que foi atualizada") ,
-                 viewModel: PostViewModel())
+                 viewModel: PostViewModel(),
+                 favorite: true)
     }
 }
