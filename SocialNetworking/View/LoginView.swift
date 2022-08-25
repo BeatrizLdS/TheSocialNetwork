@@ -9,11 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
+    @ObservedObject var userViewModel : UserViewModel
     
     @State private var messageError : String = ""
     
-    @State private var emailText : String = "BeatrizLeonel@gmail.com"
+    @State private var emailText : String = "beatrizleonel@gmail.com"
     @State private var passwordText : String = "senhaforte"
     
     @State private var isSigningIn : Bool = false
@@ -31,7 +31,7 @@ struct LoginView: View {
             .navigationBarTitle("Login", displayMode: .inline)
             .padding(20)
             .fullScreenCover(isPresented: $isSigningIn){
-                FeedView()
+                FeedView(viewModel: PostViewModel())
             }
         }
     }
@@ -71,8 +71,8 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}

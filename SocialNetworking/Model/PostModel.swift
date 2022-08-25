@@ -16,6 +16,7 @@ struct Post : Decodable{
     let userId : String
     let createdAt : String
     let updatedAt : String
+//    let favorite : String
     
     enum CodingKeys: String, CodingKey {
         case id, media, content

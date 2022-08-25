@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @ObservedObject var userViewModel : UserViewModel = UserViewModel()
+    @ObservedObject var userViewModel : UserViewModel
     
     @State private var messageError : String = ""
     
@@ -32,7 +32,7 @@ struct RegisterView: View {
             .navigationBarTitle("Cadastrar novo usuário", displayMode: .inline)
             .padding(20)
             .fullScreenCover(isPresented: $isSigningIn){
-                FeedView()
+                FeedView(viewModel: PostViewModel())
             }
         }
     }
@@ -108,8 +108,8 @@ struct RegisterView: View {
     }
 }
 
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
-    }
-}
+//struct RegisterView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RegisterView()
+//    }
+//}
