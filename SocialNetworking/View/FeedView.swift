@@ -12,7 +12,7 @@ struct FeedView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var viewModel: PostViewModel = PostViewModel()
+    @ObservedObject var viewModel: PostViewModel
     
     @State var postText : String = ""
 
@@ -38,9 +38,6 @@ struct FeedView: View {
                 ToolbarItem(placement: .primaryAction){
                     logoutButton
                 }
-//                ToolbarItem(placement: .bottomBar){
-//                    addPostButton
-//                }
             }
         }
     }
@@ -91,7 +88,7 @@ struct FeedView: View {
         ScrollView(.vertical, showsIndicators: false){
             ForEach(viewModel.postsList, id: \.id){
                 post in
-                PostCell(post: post, viewModel: viewModel)
+                PostCell(post: post, viewModel: viewModel, favorite: viewModel.likedPostsList.contains { post.id == $0.id })
                     .padding(6)
             }
         }
@@ -100,8 +97,8 @@ struct FeedView: View {
 }
 
 
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct FeedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FeedView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}

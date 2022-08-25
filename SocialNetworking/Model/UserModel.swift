@@ -11,18 +11,20 @@ struct User : Codable { //Encodable + Decodable
     
     let name : String
     let email : String
+    let id : String?
     let password : String?
     let avatar : String?
     
-    init(name : String, email: String, password: String? = nil, avatar: String? = nil){
+    init(name : String, email: String, id : String? = nil, password: String? = nil, avatar: String? = nil){
         self.name = name
         self.email = email
+        self.id = id
         self.password = password
         self.avatar = avatar
     }
     
     enum CodingKeys : String, CodingKey {
-        case name, email, password, avatar
+        case name, email, password, avatar, id
     }
     
     func encode(to encoder: Encoder) throws {
